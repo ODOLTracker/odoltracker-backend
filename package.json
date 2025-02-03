@@ -11,7 +11,8 @@
     "lint:fix": "eslint . --fix",
     "test": "NODE_ENV=test mocha --require @babel/register --exit",
     "db:migrate": "npx sequelize-cli db:migrate",
-    "migrate-windows": ".\\scripts\\migration.sh"
+    "migrate-windows": ".\\scripts\\migration.sh",
+    "seed-windows": ".\\scripts\\seed.sh"
   },
   "repository": {
     "type": "git",
