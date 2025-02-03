@@ -8,7 +8,8 @@ export default (sequelize) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Users.hasMany(models.TollGates, { foreignKey: 'operatorID' });
+      Users.hasMany(models.Notifications, { foreignKey: 'userID' });
     }
   }
   Users.init({

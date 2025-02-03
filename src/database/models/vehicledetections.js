@@ -8,7 +8,7 @@ export default (sequelize) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      VehicleDetections.belongsTo(models.TollGates, { foreignKey: 'tollGateID' });
     }
   }
   VehicleDetections.init({
