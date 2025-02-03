@@ -1,0 +1,66 @@
+{
+  "name": "odoltracker-backend",
+  "version": "1.0.0",
+  "description": "ODOLTracker Backend side, built with Node.js, Express.js, dan PostgreSQL",
+  "main": "src/app.js",
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "start": "node ./dist/bin/www.js",
+    "start:dev": "nodemon --ignore dist/ --ignore test/ --exec babel-node ./src/bin/www.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "NODE_ENV=test mocha --require @babel/register --exit",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "migrate-windows": ".\\scripts\\migration.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wannn-one/odoltracker-backend.git"
+  },
+  "keywords": [
+    "ODOL"
+  ],
+  "author": "Ikhwanul Abiyu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wannn-one/odoltracker-backend/issues"
+  },
+  "homepage": "https://github.com/wannn-one/odoltracker-backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.5.1",
+    "compression": "^1.7.5",
+    "cors": "^2.8.5",
+    "debug": "^4.4.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.10.0",
+    "pg": "^8.13.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.26.4",
+    "@babel/core": "^7.26.0",
+    "@babel/node": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/register": "^7.25.9",
+    "babel-plugin-module-resolver": "^5.0.2",
+    "chai": "^5.1.2",
+    "chai-http": "^5.1.1",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-babel-module": "^5.3.2",
+    "eslint-plugin-import": "^2.31.0",
+    "mocha": "^11.1.0",
+    "nodemon": "^3.1.9",
+    "sequelize-cli": "^6.6.2"
+  },
+  "engines": {
+    "node": "20"
+  }
+}
