@@ -5,12 +5,16 @@ export async function up(queryInterface, Sequelize) {
             detectionDateTime: new Date(),
             status: "Normal",
             tollGateID: 1,
+            createdAt: new Date(),
+            updatedAt: new Date(),
         },
         {
             vehicleType: "Truck Container",
             detectionDateTime: new Date(),
             status: "Overdimension",
-            tollGateID: 2,
+            tollGateID: 1,
+            createdAt: new Date(),
+            updatedAt: new Date(),
         },
     ])
 }

@@ -3,12 +3,16 @@ export async function up(queryInterface, Sequelize) {
         {
             detectionID: 1,
             imageURL: 'https://example.com/image1.jpg',
-            verificationStatus: 'Verified'
+            verificationStatus: 'Verified',
+            createdAt: new Date(),
+            updatedAt: new Date()
         },
         {
             detectionID: 1,
             imageURL: 'https://example.com/image2.jpg',
-            verificationStatus: 'Unverified'
+            verificationStatus: 'Unverified',
+            createdAt: new Date(),
+            updatedAt: new Date()
         }
     ])
 }
