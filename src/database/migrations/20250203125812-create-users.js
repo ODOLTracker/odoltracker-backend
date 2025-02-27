@@ -18,6 +18,12 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      isVerified: {
+        type: Sequelize.BOOLEAN
+      },
+      verificationToken: {
+        type: Sequelize.STRING
+      },
       role: {
         type: Sequelize.ENUM('Admin', 'Operator')
       },

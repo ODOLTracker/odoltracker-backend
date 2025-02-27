@@ -1,24 +1,31 @@
-import { body } from 'express-validator';
-
-export const loginRules = [
-  body('email').isEmail().exists(),
-  body('password').exists(),
-];
+import { body, query } from 'express-validator';
 
 export const registerRules = [
-  body('firstName').exists(),
-  body('lastName').exists(),
-  body('email').isEmail().exists(),
-  body('password').isLength({ min: 6 }).exists(),
+    body('email').isEmail(),
+    body('password').isLength({ min: 6 }),
+    body('name').isString(),
 ];
 
-export const updateProfileRules = [
-  body('firstName').optional(),
-  body('lastName').optional(),
-  body('email').isEmail().optional(),
+export const verifyEmailRules = [
+  query('token').isString(),
 ];
 
-export const changePasswordRules = [
-  body('current').exists(),
-  body('password').isLength({ min: 6 }).exists(),
+export const resendVerificationEmailRules = [
+    body('email').isEmail(),
+];
+
+export const loginRules = [
+    body('email').isEmail(),
+    body('password').isLength({ min: 6 }),
+];
+
+export const logoutRules = [];
+
+export const forgotPasswordRules = [
+    body('email').isEmail(),
+];
+
+export const resetPasswordRules = [
+    body('token').isString(),
+    body('password').isLength({ min: 6 }),
 ];

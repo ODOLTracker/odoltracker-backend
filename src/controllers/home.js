@@ -2,7 +2,7 @@
  * GET /
  * Home page
  */
-export const index = (req, res) => res.send('Hello World!');
+export const index = (req, res) => res.send('<h1>Halo, dunia!</h1>');
 
 /**
  * GET /health

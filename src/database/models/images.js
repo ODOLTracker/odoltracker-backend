@@ -8,7 +8,7 @@ export default (sequelize) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Images.belongsTo(models.Detections, { foreignKey: 'detectionID' });
+      Images.belongsTo(models.VehicleDetections, { foreignKey: 'detectionID' });
     }
   }
   Images.init({

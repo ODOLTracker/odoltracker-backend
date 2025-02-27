@@ -17,6 +17,15 @@ export default (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    isVerified: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    }, 
+    verificationToken: {
+      type: DataTypes.STRING,
+      defaultValue: ""
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
