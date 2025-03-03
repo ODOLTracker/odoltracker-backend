@@ -18,6 +18,18 @@ export const getTollGate = async (req, res) => {};
 */
 export const addTollGate = async (req, res) => {};
 
+/* 
+* PUT /tollgates/:id
+* Update a tollgate
+*/
+export const updateTollGate = async (req, res) => {};
+
+/*
+* DELETE /tollgates/:id
+* Delete a tollgate
+*/
+export const deleteTollGate = async (req, res) => {};
+
 /*
 * GET /tollgates/:id/operator
 * Get the operator of a tollgate

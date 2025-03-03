@@ -21,10 +21,10 @@ export default async function authenticate(req, res, next) {
 
   // Extract token from header
   const token = authorization.substring(7);
-  const tokenData = await tokenHelper.verifyToken(token);
+  const tokenData = tokenHelper.verifyToken(token);
 
   // Find user from database
-  const user = await db.models.user.findByPk(tokenData.id).catch(() => null);
+  const user = await db.models.Users.findByPk(tokenData.id).catch(() => null);
 
   // Check if user exists
   if (!user) {
@@ -43,7 +43,7 @@ export default async function authenticate(req, res, next) {
   // Check for refresh token and time left
   if (refreshToken && minutes < 15) {
     // Verify refresh token and get refresh token data
-    const refreshTokenData = await tokenHelper.verifyToken(refreshToken);
+    const refreshTokenData = tokenHelper.verifyToken(refreshToken);
 
     // Check the user of refresh token
     if (refreshTokenData.id === tokenData.id) {

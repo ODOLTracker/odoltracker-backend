@@ -8,6 +8,8 @@ export async function up(queryInterface, Sequelize) {
             isVerified: true,
             role: 'Admin',
             profilePicture: 'https://api.dicebear.com/7.x/lorelei/svg',
+            passwordResetToken: "",
+            passwordResetExpires: null,
             createdAt: new Date(),
             updatedAt: new Date(),
         }

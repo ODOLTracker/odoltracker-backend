@@ -12,7 +12,10 @@ router.route('/')
     .get(isAuthenticated, isAdmin, validate(tollGateValidation.getTollGates), tollGateController.getTollGates)
     .post(isAuthenticated, isAdmin, validate(tollGateValidation.addTollGate), tollGateController.addTollGate);
 
-router.get('/:id', isAuthenticated, isAdmin, validate(tollGateValidation.getTollGate), tollGateController.getTollGate);
+router.route('/:id')
+    .get(isAuthenticated, isAdmin, validate(tollGateValidation.getTollGate), tollGateController.getTollGate)
+    .put(isAuthenticated, isAdmin, validate(tollGateValidation.updateTollGate), tollGateController.updateTollGate)
+    .delete(isAuthenticated, isAdmin, validate(tollGateValidation.deleteTollGate), tollGateController.deleteTollGate);
 
 router.route('/:id/operator')
     .get(isAuthenticated, isAdmin, validate(tollGateValidation.getTollGateOperator), tollGateController.getTollGateOperator)

@@ -26,6 +26,6 @@ export const forgotPasswordRules = [
 ];
 
 export const resetPasswordRules = [
-    body('token').isString(),
-    body('password').isLength({ min: 6 }),
+    query('token').isString(),
+    body('newPassword').isLength({ min: 6 }),
 ];
