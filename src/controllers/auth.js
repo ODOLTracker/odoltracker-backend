@@ -6,6 +6,7 @@ import { generateToken } from '@/helpers/token';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
+import { parse } from 'path';
 
 /*
 * POST /auth/register
@@ -72,7 +73,7 @@ export const verifyEmail = async (req, res, next) => {
         await user.save();
 
         res.status(200).json({
-            message: 'Email verified successfully. You can now login.',
+            message: 'Email verified successfully.',
         });
     } catch (err) {
         next(err);
@@ -97,10 +98,9 @@ export const resendVerificationEmail = async (req, res, next) => {
             return next(createError(400, 'User is already verified!'));
         }
 
-
-        user.verificationToken = crypto.randomBytes(parseInt(process.env.CRYPTO_RANDOM_BYTES_SIZE).toString('hex'));
+        user.verificationToken = crypto.randomBytes(parseInt(process.env.CRYPTO_RANDOM_BYTES_SIZE)).toString('hex'); 
         await user.save();
-        const verificationLink = `${process.env.NODE_ENV === 'development' ? process.env.SERVER_URL : 'http://localhost:3000'}/v1/auth/verify-email?token=${user.verificationToken}`;
+        const verificationLink = `${process.env.NODE_ENV === 'production' ? process.env.SERVER_URL : 'http://localhost:3000'}/v1/auth/verify-email?token=${user.verificationToken}`;
 
         const mailOptions = {
             to: user.email,
@@ -116,6 +116,7 @@ export const resendVerificationEmail = async (req, res, next) => {
 
         res.status(200).json({ message: 'Verification email sent successfully!' });
     } catch (err) {
+        console.error(err);
         next(err);
     }
 };

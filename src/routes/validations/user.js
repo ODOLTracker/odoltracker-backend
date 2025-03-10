@@ -1,16 +1,12 @@
 import {body, query} from 'express-validator';
 
-export const getProfile = [
-    query('id').isString().withMessage('Invalid user id')
-];
+export const getProfile = [];
 
 export const updateProfile = [
-    body('name').isString().withMessage('Invalid name')
+    body('name').isString().withMessage('Invalid name'),
 ];
 
-export const deleteProfile = [
-    query('id').isString().withMessage('Invalid user id')
-];
+export const deleteProfile = [];
 
 export const changeEmail = [
     body('email').isEmail().withMessage('Invalid email')
@@ -37,7 +33,8 @@ export const removeProfilePicture = [
 // ];
 
 export const getUsers = [
-    query('id').isString().withMessage('Invalid user id')
+    query('page').optional().isInt().withMessage('Invalid page number'),
+    query('limit').optional().isInt().withMessage('Invalid limit')
 ];
 
 export const getUser = [
@@ -48,22 +45,21 @@ export const createUser = [
     body('name').isString().withMessage('Invalid name'),
     body('email').isEmail().withMessage('Invalid email'),
     body('password').isString().withMessage('Invalid password'),
-    body('role').isString().withMessage('Invalid role')
+    body('role').isString().isIn(['Admin', 'Operator']).withMessage('Invalid role')
 ];
 
 export const updateUser = [
     body('name').isString().withMessage('Invalid name'),
     body('email').isEmail().withMessage('Invalid email'),
-    body('role').isString().withMessage('Invalid role')
+    body('role').isString().isIn(['Admin', 'Operator']).withMessage('Invalid role'),
+    body('isVerified').isBoolean().withMessage('Invalid isVerified')
 ];
 
-export const deleteUser = [
-    query('id').isString().withMessage('Invalid user id')
-];
+export const deleteUser = [];
 
-export const changeRole = [
-    body('role').isString().withMessage('Invalid role')
-];
+// export const changeRole = [
+//     body('role').isString().withMessage('Invalid role')
+// ];
 
 // export const assignTollGate = [
 //     query('id').isString().withMessage('Invalid user id'),

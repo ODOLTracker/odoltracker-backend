@@ -32,6 +32,7 @@ export default (sequelize) => {
   }, {
     sequelize,
     modelName: 'TollGates',
+    paranoid: false
   });
   return TollGates;
 };
