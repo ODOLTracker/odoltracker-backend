@@ -3,29 +3,31 @@ import { Router } from "express";
 import * as notificationController from '@/controllers/notification';
 import * as notificationValidation from '@/routes/validations/notification';
 
-import { isAuthenticated, isAdmin, validate } from '@/middlewares';
+import { isAdmin, validate } from '@/middlewares';
 
 const router = Router();
 
 router.route('/')
-    .get(isAuthenticated, isAdmin, validate(notificationValidation.getNotifications), notificationController.getNotifications)
-    .post(isAuthenticated, validate(notificationValidation.createNotification), notificationController.createNotification);
+    .get(isAdmin, validate(notificationValidation.getNotifications), notificationController.getNotifications)
+    .post(validate(notificationValidation.createNotification), notificationController.createNotification);
 
-router.put('/:id/mark-as-read', isAuthenticated, isAdmin, validate(notificationValidation.markNotificationAsRead), notificationController.markNotificationAsRead);
+// router.put('/:id/mark-as-read', validate(notificationValidation.markNotificationAsRead), notificationController.markNotificationAsRead);
 
 router.route('/:id')
-    .get(isAuthenticated, isAdmin, validate(notificationValidation.getNotification), notificationController.getNotification)
-    .put(isAuthenticated, isAdmin, validate(notificationValidation.updateNotification), notificationController.updateNotification)
-    .delete(isAuthenticated, isAdmin, validate(notificationValidation.deleteNotification), notificationController.deleteNotification);
+    .get(isAdmin, validate(notificationValidation.getNotification), notificationController.getNotification)
+    .put(isAdmin, validate(notificationValidation.updateNotification), notificationController.updateNotification)
+    .delete(isAdmin, validate(notificationValidation.deleteNotification), notificationController.deleteNotification);
 
-router.get('/user/:userId', isAuthenticated, validate(notificationValidation.getUserNotifications), notificationController.getUserNotifications);
+router.get('/user/:userID', validate(notificationValidation.getUserNotifications), notificationController.getUserNotifications);
 
-router.get('/user/:userId/unread', isAuthenticated, validate(notificationValidation.getUnreadUserNotifications), notificationController.getUnreadUserNotifications);
+router.get('/user/:userID/unread', validate(notificationValidation.getUnreadUserNotifications), notificationController.getUnreadUserNotifications);
 
-router.put('/user/:userId/mark-all-as-read', isAuthenticated, validate(notificationValidation.markAllNotificationsAsRead), notificationController.markAllNotificationsAsRead);
+router.put('/user/:userID/mark-all-as-read', validate(notificationValidation.markAllNotificationsAsRead), notificationController.markAllNotificationsAsRead);
 
-router.delete('/user/:userId', isAuthenticated, validate(notificationValidation.deleteAllUserNotifications), notificationController.deleteAllUserNotifications);
+router.put('/user/:userID/read/:notificationID', validate(notificationValidation.readNotification), notificationController.readNotification);
 
-router.get('/user/:userId/unread/count', isAuthenticated, validate(notificationValidation.getUnreadUserNotificationsCount), notificationController.getUnreadUserNotificationsCount);
+router.delete('/user/:userID/delete/:notificationID', validate(notificationValidation.deleteUserNotification), notificationController.deleteUserNotification);
+
+router.get('/user/:userID/unread/count', validate(notificationValidation.getUnreadUserNotificationsCount), notificationController.getUnreadUserNotificationsCount);
 
 export default router;

@@ -4,9 +4,7 @@ import db from '@/database';
 import { sendMail } from '@/helpers/mail';
 import { generateToken } from '@/helpers/token';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import 'dotenv/config';
-import { parse } from 'path';
 
 /*
 * POST /auth/register

@@ -1,4 +1,5 @@
 import db from '@/database';
+import createError from 'http-errors';
 
 /*
 * GET /tollgate
@@ -18,7 +19,7 @@ export const getTollGates = async (req, res) => {
         });
         
         if (!tollgates) {
-            return res.status(404).json({ message: 'No tollgates found' });
+            return next(createError(404, 'No tollgates found'));
         }
 
         const totalPages = Math.ceil(tollgates.count / limit);
@@ -53,7 +54,7 @@ export const getTollGate = async (req, res) => {
         });
 
         if (!tollgate) {
-            return res.status(404).json({ message: 'Tollgate not found' });
+            return next(createError(404, 'No tollgates found'));
         }
 
         res.status(200).json({
@@ -103,7 +104,7 @@ export const updateTollGate = async (req, res) => {
         const tollgate = await db.models.TollGates.findByPk(id);
 
         if (!tollgate) {
-            return res.status(404).json({ message: 'Tollgate not found' });
+            return next(createError(404, 'No tollgates found'));
         }
 
         tollgate.name = name;
@@ -134,7 +135,7 @@ export const deleteTollGate = async (req, res) => {
         const tollgate = await db.models.TollGates.findByPk(id);
 
         if (!tollgate) {
-            return res.status(404).json({ message: 'Tollgate not found' });
+            return next(createError(404, 'No tollgates found'));
         }
 
         await tollgate.destroy();
@@ -157,13 +158,13 @@ export const getTollGateOperator = async (req, res) => {
         const tollgate = await db.models.TollGates.findByPk(id);
 
         if (!tollgate) {
-            return res.status(404).json({ message: 'Tollgate not found' });
+            return next(createError(404, 'No tollgates found'));
         }
 
         const operator = await db.Users.findByPk(tollgate.operatorID);
 
         if (!operator) {
-            return res.status(404).json({ message: 'Operator not found' });
+            return next(createError(404, 'No operator found'));
         }
 
         res.status(200).json({
@@ -204,7 +205,7 @@ export const getManagedTollGatesByOperator = async (req, res, next) => {
         });
 
         if (!tollgates) {
-            return res.status(404).json({ message: 'No tollgates found' });
+            return next(createError(404, 'No tollgates found'));
         }
 
         const totalPages = Math.ceil(tollgates.count / limit);
@@ -237,7 +238,7 @@ export const changeOperatorOfTollGate = async (req, res) => {
         const tollgate = await db.models.TollGates.findByPk(id);
 
         if (!tollgate) {
-            return res.status(404).json({ message: 'Tollgate not found' });
+            return next(createError(404, 'No tollgates found'));
         }
 
         tollgate.operatorID = operatorID;
@@ -265,7 +266,7 @@ export const assignTollGateToOperator = async (req, res) => {
         const tollgate = await db.models.TollGates.findByPk(id);
 
         if (!tollgate) {
-            return res.status(404).json({ message: 'Tollgate not found' });
+            return next(createError(404, 'No tollgates found'));
         }
 
         tollgate.operatorID = operatorID;
@@ -293,7 +294,7 @@ export const removeTollGateFromOperator = async (req, res) => {
         const tollgate = await db.models.TollGates.findByPk(id);
 
         if (!tollgate) {
-            return res.status(404).json({ message: 'Tollgate not found' });
+            return next(createError(404, 'No tollgates found'));
         }
 
         tollgate.operatorID = null;
@@ -323,7 +324,7 @@ export const getTollGateLocation = async (req, res) => {
         });
 
         if (!tollgate) {
-            return res.status(404).json({ message: 'Tollgate not found' });
+            return next(createError(404, 'No tollgates found'));
         }
 
         res.status(200).json({

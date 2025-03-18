@@ -412,9 +412,19 @@ export const deleteUser = async (req, res, next) => {
                 where: { id },
                 attributes: {
                     exclude: ['password', 'updatedAt', 'verificationToken', 'passwordResetToken', 'passwordResetExpires']
-                }, 
+                }
             }
         );
+
+        const tollgates = await db.models.Tollgates.findAll(
+            { 
+                where: { operatorID: id } 
+            }
+        );
+
+        if (tollgates.length > 0) {
+            return next(createError(400, 'User is assigned to one or more tollgates, please reassign before deleting!'));
+        }
 
         if (!user) {
             return next(createError(404, 'User not found!'));
