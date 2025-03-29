@@ -31,6 +31,7 @@ export default (sequelize) => {
   }, {
     sequelize,
     modelName: 'VehicleDetections',
+    paranoid: false
   });
   return VehicleDetections;
 };

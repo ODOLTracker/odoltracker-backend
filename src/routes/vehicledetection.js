@@ -19,12 +19,12 @@ router.get('/:tollgateId/overdimension',  validate(vehicleDetectionValidation.ge
 
 router.get('/:tollgateId/normal',  validate(vehicleDetectionValidation.getNormalVehicleDetections), vehicleDetectionController.getNormalVehicleDetections);
 
-router.get('/daily-count',  validate(vehicleDetectionValidation.getDailyVehicleDetectionCount), vehicleDetectionController.getDailyVehicleDetectionCount);
+router.get('/daily-count/:tollgateId',  validate(vehicleDetectionValidation.getDailyVehicleDetectionCount), vehicleDetectionController.getDailyVehicleDetectionCount);
 
-router.get('/date-range-count',  validate(vehicleDetectionValidation.getVehicleDetectionCountByDateRange), vehicleDetectionController.getVehicleDetectionCountByDateRange);
+router.get('/date-range-count/:tollgateId',  validate(vehicleDetectionValidation.getVehicleDetectionCountByDateRange), vehicleDetectionController.getVehicleDetectionCountByDateRange);
 
-router.get('/:vehicleType',  validate(vehicleDetectionValidation.getVehicleDetectionByVehicleType), vehicleDetectionController.getVehicleDetectionByVehicleType);
+router.get('/:vehicleType/:tollgateId',  validate(vehicleDetectionValidation.getVehicleDetectionByVehicleType), vehicleDetectionController.getVehicleDetectionByVehicleType);
 
-router.get('/:vehicleType/count',  validate(vehicleDetectionValidation.getVehicleDetectionCountByVehicleType), vehicleDetectionController.getVehicleDetectionCountByVehicleType);
+router.get('/:vehicleType/:tollgateId/count',  validate(vehicleDetectionValidation.getVehicleDetectionCountByVehicleType), vehicleDetectionController.getVehicleDetectionCountByVehicleType);
 
 export default router;
