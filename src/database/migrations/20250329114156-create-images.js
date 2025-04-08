@@ -15,8 +15,11 @@ module.exports = {
       imageURL: {
         type: Sequelize.STRING
       },
+      cloudinaryPublicID: {
+        type: Sequelize.STRING
+      },
       verificationStatus: {
-        type: Sequelize.ENUM('Verified', 'Unverified')
+        type: Sequelize.ENUM('Verified', 'Unverified', 'Rejected')
       },
       createdAt: {
         allowNull: false,

@@ -20,13 +20,19 @@ export default (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    cloudinaryPublicID: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },    
     verificationStatus: {
       type: DataTypes.ENUM('Verified', 'Unverified'),
       allowNull: false,
+      defaultValue: 'Unverified',
     }
   }, {
     sequelize,
     modelName: 'Images',
+    paranoid: false
   });
   return Images;
 };
